@@ -45,3 +45,7 @@ img {
 footer {
   float: right;
 }
+button{
+  background-color: blue;
+  color: white;
+}
