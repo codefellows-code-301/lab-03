@@ -24,13 +24,13 @@
 #lab-03
 #Feature 1: Pagination
  - Estimate of time to complete: 1 HR
- - Start Time: 
- - Finish Time: 
- - Actual Time: 
+ - Start Time: 4:47 PM
+ - Finish Time: 5:30 PM
+ - Actual Time: 43 MIN
 
  #Feature 2: Templating
  - Estimate of time to complete: 1 HR
- - Start Time: 
+ - Start Time: 5:31 PM
  - Finish Time: 
  - Actual Time: 
 
