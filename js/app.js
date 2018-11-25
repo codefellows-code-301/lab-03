@@ -50,8 +50,26 @@ HornyImage.prototype.options = function () {
   }
 }
 
+//First Json File
 function readJson() {
   $.get('data/page-1.json', 'json').then(data => {
+    data.forEach(hornyImageObj => {
+      new HornyImage(hornyImageObj)
+      console.log('horny images!')
+    })
+  }).then(() => {
+    allHornyImages.forEach(horn => {
+      horn.render();
+      horn.options();
+      console.log('work!');
+    })
+  })
+}
+
+//Second Json File
+//Need to wrap in a click handler tied to a "page 2" button
+function readJsonAgain() {
+  $.get('data/page-2.json', 'json').then(data => {
     data.forEach(hornyImageObj => {
       new HornyImage(hornyImageObj)
       console.log('horny images!')
@@ -77,4 +95,5 @@ $('#options').on('change', function(){
 });
 
 $(() => readJson());
+$(() => readJsonAgain());
 
