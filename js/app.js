@@ -2,6 +2,8 @@
 //Global
 let allHornyImages = [];
 let keywordList = [];
+var source   = document.getElementById("entry-template").innerHTML;
+var template = Handlebars.compile(source);
 
 function HornyImage(obj) {
   this.image_url = obj.image_url;
