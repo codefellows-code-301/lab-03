@@ -30,9 +30,13 @@
 
  #Feature 2: Templating
  - Estimate of time to complete: 1 HR
- - Start Time: 5:31 PM
+ - Start Time: 5:31 PM 11/24/18
+ - Finish Time: 6:30 PM 11/24/18
+ - Actual Time: 1 HR
+ - Start Time: 
  - Finish Time: 
  - Actual Time: 
+ - Total Time:
 
  #Feature 3: Styling with Flexbox
  - Estimate of time to complete: 1 HR

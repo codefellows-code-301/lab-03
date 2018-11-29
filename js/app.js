@@ -51,42 +51,22 @@ HornyImage.prototype.options = function () {
 }
 
 //First Json File
-function readJson() {
-  $.get('data/page-1.json', 'json').then(data => {
+function readJson(filepath) {
+  $.get(filepath, 'json').then(data => {
+    allHornyImages= []; //clears out the array
     data.forEach(hornyImageObj => {
       new HornyImage(hornyImageObj)
       console.log('horny images!')
     })
   }).then(() => {
+    keywordList = []; //clears out list of keywords
     allHornyImages.forEach(horn => {
       horn.render();
       horn.options();
-      allHornyImages= []; //clears out the array
-      keywordList = [];
       console.log('work!');
     })
   })
 }
-
-//Second Json File
-//Need to wrap in a click handler tied to a "page 2" button
-function readJsonAgain() {
-  $.get('data/page-2.json', 'json').then(data => {
-    data.forEach(hornyImageObj => {
-      new HornyImage(hornyImageObj)
-      console.log('page 2!')
-    })
-  }).then(() => {
-    allHornyImages.forEach(horn => {
-      horn.render();
-      horn.options();
-      allHornyImages= []; //clears out the array
-      keywordList = [];
-      console.log('work harder!');
-    })
-  })
-}
-
 
 //Code modified from Skyler/Nicole
 //Option view handler
@@ -98,18 +78,13 @@ $('#options').on('change', function(){
   }
 });
 
-//Button Click Handler - Page 1
-$('#page-1').on('click', function(){
-  $('section').fadeOut();
-  $(() => readJson());
+//Button Click Handler - Dry
+$('nav').on('click', 'button', function(event){
+  $('main').empty();
+  $('option').empty();
+  $(() => readJson(`./data/${event.target.id}.json`));
 });
 
-//Button Click Handler - Page 2
-$('#page-2').on('click', function(){
-  $('section').fadeOut();
-  $(() => readJsonAgain());
-});
-
-$(() => readJson());
+$(() => readJson('./data/page-1.json'));
 
 
