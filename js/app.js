@@ -61,7 +61,7 @@ function readJson(filepath) {
     })
   }).then(() => {
     keywordList = []; //clears out list of keywords
-    
+
     allHornyImages.forEach(horn => {
       horn.render();
       horn.options();
