@@ -2,8 +2,6 @@
 //Global
 let allHornyImages = [];
 let keywordList = [];
-var source   = document.getElementById("entry-template").innerHTML;
-var template = Handlebars.compile(source);
 
 function HornyImage(obj) {
   this.image_url = obj.image_url;
@@ -88,5 +86,4 @@ $('nav').on('click', 'button', function(event){
 });
 
 $(() => readJson('./data/page-1.json'));
-
 
