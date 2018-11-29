@@ -18,14 +18,15 @@ HornyImage.prototype.render = function() {
   $('main').append('<section class = "clone"></section>');
 
   let $clone = $('section[class = "clone"]');
+  // var source   = document.getElementById('#horny-image-template').innerHTML;
+  // var template = Handlebars.compile(source);
+  let hornyTemplate = Handlebars.compile($('#horny-image-template').html());
+  // console.log(this);
+  $clone.html(hornyTemplate(this));
 
-  let hornyTemplate = $('#photo-template').html();
-
-  $clone.html(hornyTemplate);
-
-  $clone.find('h2').text(this.title);
-  $clone.find('p').text(this.description);
-  $clone.find('img').attr('src', this.image_url);
+  // $clone.find('h2').text(this.title);
+  // $clone.find('p').text(this.description);
+  // $clone.find('img').attr('src', this.image_url);
 
   $clone.removeClass('clone');
   $clone.attr('class', this.title);
@@ -50,7 +51,7 @@ HornyImage.prototype.options = function () {
   }
 }
 
-//First Json File
+//Read Json File
 function readJson(filepath) {
   $.get(filepath, 'json').then(data => {
     allHornyImages= []; //clears out the array
@@ -60,6 +61,7 @@ function readJson(filepath) {
     })
   }).then(() => {
     keywordList = []; //clears out list of keywords
+    
     allHornyImages.forEach(horn => {
       horn.render();
       horn.options();
@@ -70,18 +72,20 @@ function readJson(filepath) {
 
 //Code modified from Skyler/Nicole
 //Option view handler
-$('#options').on('change', function(){
-  console.log(allHornyImages, keywordList, 'arrays inside options');
-  if($(this).val()) {
+$('#filter-options').on('change', function(){
+  // console.log(allHornyImages, keywordList, 'arrays inside options');
+  let val = $(this).val();
+  if(val) {
     $('section').hide();
-    $(`section[keyword="${$(this).val()}"]`).show();
+    $(`section[keyword="${val}"]`).show();
   }
 });
 
 //Button Click Handler - Dry
 $('nav').on('click', 'button', function(event){
   $('main').empty();
-  $('option').empty();
+  $('#filter-options').empty();
+  $('select').append('<option value="default">Filter by Keyword</option>');
   $(() => readJson(`./data/${event.target.id}.json`));
 });
 
