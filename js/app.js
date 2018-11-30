@@ -19,15 +19,8 @@ HornyImage.prototype.render = function() {
   $('main').append('<section class = "clone"></section>');
 
   let $clone = $('section[class = "clone"]');
-  // var source   = document.getElementById('#horny-image-template').innerHTML;
-  // var template = Handlebars.compile(source);
   let hornyTemplate = Handlebars.compile($('#horny-image-template').html());
-  // console.log(this);
   $clone.html(hornyTemplate(this));
-
-  // $clone.find('h2').text(this.title);
-  // $clone.find('p').text(this.description);
-  // $clone.find('img').attr('src', this.image_url);
 
   $clone.removeClass('clone');
   $clone.attr('class', this.title);
@@ -75,7 +68,6 @@ function readJson(filepath) {
 //Code modified from Skyler/Nicole
 //Option view handler
 $('#filter-options').on('change', function(){
-  // console.log(allHornyImages, keywordList, 'arrays inside options');
   let val = $(this).val();
   if(val) {
     $('section').hide();
@@ -104,11 +96,9 @@ $('#alphabetize').on('click', function(event){
 //Read Json File for Title Sort
 function readJsonSortTitle(filepath) {
   $.get(filepath, 'json').then(data => {
-    // knowCurrentPage = filepath;
     allHornyImages= []; //clears out the array
     data.forEach(hornyImageObj => {
       new HornyImage(hornyImageObj)
-      // console.log('horny images!')
     })
     allHornyImages.sort(function(a,b){
       if(a.title<b.title) return -1;
@@ -120,16 +110,13 @@ function readJsonSortTitle(filepath) {
     allHornyImages.forEach(horn => {
       horn.render();
       horn.options();
-      // console.log('work!');
     })
-    // console.log(allHornyImages);
   })
 }
 
 //Read Json File for Horns Sort
 function readJsonSortHorns(filepath) {
   $.get(filepath, 'json').then(data => {
-    // knowCurrentPage = filepath;
     allHornyImages= []; //clears out the array
     data.forEach(hornyImageObj => {
       new HornyImage(hornyImageObj)
@@ -146,7 +133,6 @@ function readJsonSortHorns(filepath) {
     allHornyImages.forEach(horn => {
       horn.render();
       horn.options();
-      // console.log('work!');
     })
   })
 }
