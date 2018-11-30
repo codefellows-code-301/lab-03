@@ -8,7 +8,6 @@ font-family: 'Amatic SC', cursive; */
 
 body {
   width: 100%;
-  display: flex;
   margin:auto;
   /* rainbow animation - modified from here https://codepen.io/P1N2O/pen/pyBNzX */
   height: 100%;
@@ -18,10 +17,12 @@ body {
 	-webkit-animation: Gradient 15s ease infinite;
 	/* -moz-animation: Gradient 15s ease infinite; */
   animation: Gradient 15s ease infinite;
-  display: flex;
-  flex-direction: row;
+  /* flex-direction: row; */
 }
 
+#wrapper{
+  display:flex;
+}
 /* Rainbow Animation - see inside body for source */
 @-webkit-keyframes Gradient { /*same gradient code but for diff browsers*/
 	0% {background-position: 0% 50%}
@@ -43,6 +44,7 @@ body {
 
 header {
   margin: 3%;
+  width: 20%;
 }
 h1 {
   width: 100%;
@@ -60,56 +62,54 @@ h1 {
   font-family: 'Oswald', sans-serif;
   font-size: 30px;
   margin: 30px 0;
-  width: 250px;
+  width: 100%;
   justify-content: center;
 }
 
 nav {
   display: flex;
-  flex-flow: wrap;
-  justify-content: space-around;
+  /* flex-flow: wrap; */
+  align-content: space-around;
   flex-direction: column;
-  height: 8%;
 }
 
 
 h2 {
-font-size: 45px;
+font-size: 3vw;
 text-align: center;
 /* margin: auto; */
 padding: 10px;
 font-weight: bolder;
-height: 110px;
+/* height: 110px; */
+justify-content: center;
 }
 
 main {
   display: flex;
-  align-content: space-around;
+  align-content: space-evenly;
   flex-flow: wrap;
+  width: 80%;
 }
 section {
-  /* float: left; */
   font-family: 'Amatic SC', cursive;
   width: 23%;
-  height: 600px;
+  height: 450px;
   margin: 1%;
   background: linear-gradient(-45deg, rgb(233, 56, 3), #E73C7E, #23A6D5, #23D5AB);
 	background-size: 400% 400%;
 	-webkit-animation: Gradient 2s ease infinite;
 	/* -moz-animation: Gradient 15s ease infinite; */
 	animation: Gradient 5s ease infinite;
-  /* display: flex;
-  align-items: center;
-  flex-direction: row; */
   border: 3px solid white;
   align-items: center;
   align-content: space-evenly;
   flex-flow: wrap;
-  flex-direction: column;
+  /* flex-direction: column; */
+  flex-shrink: 1;
 }
 img {
   width: 80%;
-  height: 60%;
+  height: 50%;
   margin: 0 10% 0 10%;
   display: flex;
   background-color: white;
@@ -120,17 +120,23 @@ img {
 p{
   font-family: 'Oswald', sans-serif;
   font-weight: bolder;
-  font-size: 25px;
-  margin: 5%;
+  font-size: 1.25vw;
+  margin: 10px;
   display: flex;
   justify-content: center;
   text-align: center;
   align-self: center;
+  /* flex-shrink: 1; */
 }
 
 footer {
-  display: flex;
   width: 100%;
+  text-align: center;
+  font-family: 'Amatic SC', cursive;
+  font-size: 50px;
+  color: white;
+  font-weight: bolder;
+
 }
 button{
   background: linear-gradient(-45deg, #EE7752, #E73C7E, #23A6D5, #23D5AB);
@@ -139,9 +145,11 @@ button{
 	/* -moz-animation: Gradient 15s ease infinite; */
 	animation: Gradient 5s ease infinite;
   padding: 10px 15px;
+  width:100%;
   font-size: 50px;
   color: white;
   border: 3px solid white;
   font-family: 'Amatic SC', cursive;
   font-weight: bolder;
+  margin-top: 10px;
 }
