@@ -19,15 +19,10 @@ HornyImage.prototype.render = function() {
   $('main').append('<section class = "clone"></section>');
 
   let $clone = $('section[class = "clone"]');
-  // var source   = document.getElementById('#horny-image-template').innerHTML;
-  // var template = Handlebars.compile(source);
-  let hornyTemplate = Handlebars.compile($('#horny-image-template').html());
-  // console.log(this);
-  $clone.html(hornyTemplate(this));
 
-  // $clone.find('h2').text(this.title);
-  // $clone.find('p').text(this.description);
-  // $clone.find('img').attr('src', this.image_url);
+  let hornyTemplate = Handlebars.compile($('#horny-image-template').html());
+  
+  $clone.html(hornyTemplate(this));
 
   $clone.removeClass('clone');
   $clone.attr('class', this.title);
@@ -59,7 +54,7 @@ function readJson(filepath) {
     knowCurrentPage = filepath;
     data.forEach(hornyImageObj => {
       new HornyImage(hornyImageObj)
-      // console.log(knowCurrentPage);
+   
     })
   }).then(() => {
     keywordList = []; //clears out list of keywords
@@ -75,7 +70,7 @@ function readJson(filepath) {
 //Code modified from Skyler/Nicole
 //Option view handler
 $('#filter-options').on('change', function(){
-  // console.log(allHornyImages, keywordList, 'arrays inside options');
+  
   let val = $(this).val();
   if(val) {
     $('section').hide();
@@ -84,7 +79,8 @@ $('#filter-options').on('change', function(){
 });
 
 //Pagination Button Click Handler - Dry
-$('nav').on('click', 'button', function(event){
+$('.pagination-button').on('click', function(event){
+  console.log('inside page click handler');
   $('main').empty();
   $('#filter-options').empty();
   $('select').append('<option value="default">Filter by Keyword</option>');
@@ -92,7 +88,7 @@ $('nav').on('click', 'button', function(event){
 });
 
 //Sort Button Click Handler - Title
-$('nav').on('click', 'button', function(event){
+$('#alphabetize').on('click', function(event){
   $('main').empty();
   $('#filter-options').empty();
   $('select').append('<option value="default">Filter by Keyword</option>');
@@ -124,6 +120,15 @@ function readJsonSortTitle(filepath) {
   })
 }
 
+//Sort Button Click Handler - Horns
+$('#horn-sort').on('click', function(event){
+  $('main').empty();
+  $('#filter-options').empty();
+  $('select').append('<option value="default">Filter by Keyword</option>');
+  $(() => readJsonSortHorns(knowCurrentPage));
+  console.log(`${event.target.id}`);
+});
+
 //Read Json File for Horns Sort
 function readJsonSortHorns(filepath) {
   $.get(filepath, 'json').then(data => {
@@ -148,13 +153,6 @@ function readJsonSortHorns(filepath) {
   })
 }
 
-//Sort Button Click Handler - Horns
-$('nav').on('click', 'button', function(event){
-  $('main').empty();
-  $('#filter-options').empty();
-  $('select').append('<option value="default">Filter by Keyword</option>');
-  $(() => readJsonSortHorns(knowCurrentPage));
-  console.log(`${event.target.id}`);
-});
+
 $(() => readJson('./data/page-1.json'));
 
