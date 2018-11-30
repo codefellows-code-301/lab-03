@@ -131,7 +131,7 @@ function readJsonSortHorns(filepath) {
     allHornyImages= []; //clears out the array
     data.forEach(hornyImageObj => {
       new HornyImage(hornyImageObj)
-      console.log('horny images!')
+
     })
     allHornyImages.sort(function(a,b){
       if(a.horns<b.horns) return -1;
