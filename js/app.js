@@ -20,6 +20,7 @@ HornyImage.prototype.render = function() {
 
   let $clone = $('section[class = "clone"]');
   let hornyTemplate = Handlebars.compile($('#horny-image-template').html());
+  
   $clone.html(hornyTemplate(this));
 
   $clone.removeClass('clone');
@@ -52,7 +53,7 @@ function readJson(filepath) {
     allHornyImages = []; //clears out the array
     data.forEach(hornyImageObj => {
       new HornyImage(hornyImageObj)
-      console.log(knowCurrentPage);
+      
     })
   }).then(() => {
     keywordList = []; //clears out list of keywords
@@ -68,6 +69,7 @@ function readJson(filepath) {
 //Code modified from Skyler/Nicole
 //Option view handler
 $('#filter-options').on('change', function(){
+
   let val = $(this).val();
   if(val) {
     $('section').hide();
@@ -77,7 +79,7 @@ $('#filter-options').on('change', function(){
 
 //Pagination Button Click Handler - Dry
 $('.pagination-button').on('click', function(event){
-  console.log('hi');
+
   $('main').empty();
   $('#filter-options').empty();
   $('select').append('<option value="default">Filter by Keyword</option>');
@@ -114,6 +116,15 @@ function readJsonSortTitle(filepath) {
   })
 }
 
+//Sort Button Click Handler - Horns
+$('#horn-sort').on('click', function(event){
+  $('main').empty();
+  $('#filter-options').empty();
+  $('select').append('<option value="default">Filter by Keyword</option>');
+  $(() => readJsonSortHorns(knowCurrentPage));
+  console.log(`${event.target.id}`);
+});
+
 //Read Json File for Horns Sort
 function readJsonSortHorns(filepath) {
   $.get(filepath, 'json').then(data => {
@@ -137,6 +148,7 @@ function readJsonSortHorns(filepath) {
   })
 }
 
+
 //Sort Button Click Handler - Horns
 $('#horn-sort').on('click', function(event){
   $('main').empty();
@@ -145,5 +157,6 @@ $('#horn-sort').on('click', function(event){
   $(() => readJsonSortHorns(knowCurrentPage));
   console.log(`${event.target.id}`);
 });
+
 $(() => readJson('./data/page-1.json'));
 
