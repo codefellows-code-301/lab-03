@@ -2,6 +2,7 @@
 //Global
 let allHornyImages = [];
 let keywordList = [];
+let knowCurrentPage;
 
 function HornyImage(obj) {
   this.image_url = obj.image_url;
@@ -54,10 +55,11 @@ HornyImage.prototype.options = function () {
 //Read Json File
 function readJson(filepath) {
   $.get(filepath, 'json').then(data => {
-    allHornyImages= []; //clears out the array
+    allHornyImages = []; //clears out the array
+    knowCurrentPage = filepath;
     data.forEach(hornyImageObj => {
       new HornyImage(hornyImageObj)
-      console.log('horny images!')
+      // console.log(knowCurrentPage);
     })
   }).then(() => {
     keywordList = []; //clears out list of keywords
@@ -81,7 +83,7 @@ $('#filter-options').on('change', function(){
   }
 });
 
-//Button Click Handler - Dry
+//Pagination Button Click Handler - Dry
 $('nav').on('click', 'button', function(event){
   $('main').empty();
   $('#filter-options').empty();
@@ -89,5 +91,70 @@ $('nav').on('click', 'button', function(event){
   $(() => readJson(`./data/${event.target.id}.json`));
 });
 
+//Sort Button Click Handler - Title
+$('nav').on('click', 'button', function(event){
+  $('main').empty();
+  $('#filter-options').empty();
+  $('select').append('<option value="default">Filter by Keyword</option>');
+  $(() => readJsonSortTitle(knowCurrentPage));
+  console.log(`${event.target.id}`);
+});
+
+//Read Json File for Title Sort
+function readJsonSortTitle(filepath) {
+  $.get(filepath, 'json').then(data => {
+    allHornyImages= []; //clears out the array
+    data.forEach(hornyImageObj => {
+      new HornyImage(hornyImageObj)
+      // console.log('horny images!')
+    })
+    allHornyImages.sort(function(a,b){
+      if(a.title<b.title) return -1;
+      if(a.title>b.title) return 1;
+      return 0;
+    })
+  }).then(() => {
+    keywordList = []; //clears out list of keywords
+    allHornyImages.forEach(horn => {
+      horn.render();
+      horn.options();
+      // console.log('work!');
+    })
+    // console.log(allHornyImages);
+  })
+}
+
+//Read Json File for Horns Sort
+function readJsonSortHorns(filepath) {
+  $.get(filepath, 'json').then(data => {
+    allHornyImages= []; //clears out the array
+    data.forEach(hornyImageObj => {
+      new HornyImage(hornyImageObj)
+      console.log('horny images!')
+    })
+    allHornyImages.sort(function(a,b){
+      if(a.horns<b.horns) return -1;
+      if(a.horns>b.horns) return 1;
+      return 0;
+    })
+  }).then(() => {
+    keywordList = []; //clears out list of keywords
+
+    allHornyImages.forEach(horn => {
+      horn.render();
+      horn.options();
+      // console.log('work!');
+    })
+  })
+}
+
+//Sort Button Click Handler - Horns
+$('nav').on('click', 'button', function(event){
+  $('main').empty();
+  $('#filter-options').empty();
+  $('select').append('<option value="default">Filter by Keyword</option>');
+  $(() => readJsonSortHorns(knowCurrentPage));
+  console.log(`${event.target.id}`);
+});
 $(() => readJson('./data/page-1.json'));
 

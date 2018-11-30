@@ -46,6 +46,6 @@
 
 #Feature 4: Sort the Images
  - Estimate of time to complete: 1 HR
- - Start Time: 
+ - Start Time: 5:15 PM
  - Finish Time: 
  - Actual Time: 
