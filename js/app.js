@@ -54,16 +54,16 @@ HornyImage.prototype.options = function () {
 
 //Read Json File
 function readJson(filepath) {
+  knowCurrentPage = filepath;
   $.get(filepath, 'json').then(data => {
     allHornyImages = []; //clears out the array
-    knowCurrentPage = filepath;
     data.forEach(hornyImageObj => {
       new HornyImage(hornyImageObj)
-      // console.log(knowCurrentPage);
+      console.log(knowCurrentPage);
     })
   }).then(() => {
     keywordList = []; //clears out list of keywords
-
+    
     allHornyImages.forEach(horn => {
       horn.render();
       horn.options();
@@ -84,7 +84,8 @@ $('#filter-options').on('change', function(){
 });
 
 //Pagination Button Click Handler - Dry
-$('nav').on('click', 'button', function(event){
+$('.pagination-button').on('click', function(event){
+  console.log('hi');
   $('main').empty();
   $('#filter-options').empty();
   $('select').append('<option value="default">Filter by Keyword</option>');
@@ -92,7 +93,7 @@ $('nav').on('click', 'button', function(event){
 });
 
 //Sort Button Click Handler - Title
-$('nav').on('click', 'button', function(event){
+$('#alphabetize').on('click', function(event){
   $('main').empty();
   $('#filter-options').empty();
   $('select').append('<option value="default">Filter by Keyword</option>');
@@ -103,6 +104,7 @@ $('nav').on('click', 'button', function(event){
 //Read Json File for Title Sort
 function readJsonSortTitle(filepath) {
   $.get(filepath, 'json').then(data => {
+    // knowCurrentPage = filepath;
     allHornyImages= []; //clears out the array
     data.forEach(hornyImageObj => {
       new HornyImage(hornyImageObj)
@@ -127,6 +129,7 @@ function readJsonSortTitle(filepath) {
 //Read Json File for Horns Sort
 function readJsonSortHorns(filepath) {
   $.get(filepath, 'json').then(data => {
+    // knowCurrentPage = filepath;
     allHornyImages= []; //clears out the array
     data.forEach(hornyImageObj => {
       new HornyImage(hornyImageObj)
@@ -149,7 +152,7 @@ function readJsonSortHorns(filepath) {
 }
 
 //Sort Button Click Handler - Horns
-$('nav').on('click', 'button', function(event){
+$('#horn-sort').on('click', function(event){
   $('main').empty();
   $('#filter-options').empty();
   $('select').append('<option value="default">Filter by Keyword</option>');
