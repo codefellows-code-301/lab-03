@@ -33,16 +33,16 @@
  - Start Time: 5:31 PM 11/24/18
  - Finish Time: 6:30 PM 11/24/18
  - Actual Time: 1 HR
- - Start Time: 
- - Finish Time: 
- - Actual Time: 
- - Total Time:
+ - Start Time: 7:00 PM
+ - Finish Time: 10:00 PM
+ - Actual Time: 3 HRS
+ - Total Time: 4 HRS
 
  #Feature 3: Styling with Flexbox
  - Estimate of time to complete: 1 HR
- - Start Time: 
- - Finish Time: 
- - Actual Time: 
+ - Start Time: 11:30 PM
+ - Finish Time: 3:30 AM (with withues)
+ - Actual Time: 4 HRS
 
 #Feature 4: Sort the Images
  - Estimate of time to complete: 1 HR
